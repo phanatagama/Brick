@@ -47,3 +47,7 @@ Contributions are welcome! If you have ideas on how to improve the game or want 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Asset
+1. Audio
+    - [Misc 1 (brick_hit.wav)](https://ivyism.itch.io/8-16-bit-half-life)
