@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../brick_breaker.dart';
 
 class Bat extends PositionComponent
-    with DragCallbacks, HasGameReference<BrickBreaker> {
+    with DragCallbacks, HasGameReference<BrickBreaker>, CollisionCallbacks {
   Bat({
     required this.cornerRadius,
     required super.position,
@@ -27,8 +27,7 @@ class Bat extends PositionComponent
   @override
   void onLoad() {
     super.onLoad();
-    debugMode = true;
-    // position = Vector2(game.width / 2, game.height - 50);
+    position = Vector2(game.width / 2, game.height - 50);
   }
 
   @override
@@ -42,15 +41,17 @@ class Bat extends PositionComponent
         _paint);
   }
 
+  /// called when user drag the bat
   @override
   void onDragUpdate(DragUpdateEvent event) {
     super.onDragUpdate(event);
-    position.x = (position.x + event.localDelta.x).clamp(0+batWidth/2, game.width -batWidth/2);
+    position.x = (position.x + event.localDelta.x).clamp(0+batWidth/2, game.width - batWidth/2);
   }
 
+  /// called when user user keyboard
   void moveBy(double dx) {
     add(MoveToEffect(
-      Vector2((position.x + dx).clamp(0, game.width), position.y),
+      Vector2((position.x + dx).clamp(0+batWidth/2, game.width - batWidth/2), position.y),
       EffectController(duration: 0.1),
     ));
   }
