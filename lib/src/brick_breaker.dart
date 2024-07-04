@@ -54,6 +54,11 @@ class BrickBreaker extends FlameGame
     playState = PlayState.welcome;                              // Add from here...
   }
 
+  void restartGame() {
+    playState = PlayState.gameOver;
+    startGame();
+  }
+
   void startGame() {
     if (playState == PlayState.playing) return;
 
@@ -102,6 +107,9 @@ class BrickBreaker extends FlameGame
       KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     super.onKeyEvent(event, keysPressed);
     switch (event.logicalKey) {
+      case LogicalKeyboardKey.keyR:
+        restartGame();
+        break;
       case LogicalKeyboardKey.arrowLeft:
         world.children.query<Bat>().first.moveBy(-batStep);
       case LogicalKeyboardKey.arrowRight:

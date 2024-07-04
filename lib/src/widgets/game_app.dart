@@ -4,13 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../brick_breaker.dart';
 import '../config.dart';
-import 'overlay_screen.dart';                                   // Add this import
-import 'score_card.dart';                                       // And this one too
+import 'overlay_screen.dart'; // Add this import
+import 'score_card.dart'; // And this one too
 
-class GameApp extends StatefulWidget {                          // Modify this line
+class GameApp extends StatefulWidget {
+  // Modify this line
   const GameApp({super.key});
 
-  @override                                                     // Add from here...
+  @override // Add from here...
   State<GameApp> createState() => _GameAppState();
 }
 
@@ -21,7 +22,7 @@ class _GameAppState extends State<GameApp> {
   void initState() {
     super.initState();
     game = BrickBreaker();
-  }                                                             // To here.
+  } // To here.
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +51,22 @@ class _GameAppState extends State<GameApp> {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Center(
-                child: Column(                                  // Modify from here...
+                child: Column(
+                  // Modify from here...
                   children: [
-                    ScoreCard(score: game.score),
+                    Row(
+                      children: [
+                        Expanded(child: ScoreCard(score: game.score)),
+                        IconButton(
+                          onPressed: game.restartGame,
+                          icon: const Icon(
+                            Icons.restart_alt,
+                            size: 24.0,
+                            semanticLabel: 'Restart Game',
+                          ),
+                        ),
+                      ],
+                    ),
                     Expanded(
                       child: FittedBox(
                         child: SizedBox(
@@ -82,7 +96,7 @@ class _GameAppState extends State<GameApp> {
                       ),
                     ),
                   ],
-                ),                                              // To here.
+                ), // To here.
               ),
             ),
           ),
