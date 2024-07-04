@@ -1,5 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 import '../brick_breaker.dart';
@@ -9,7 +10,7 @@ import 'bat.dart';
 
 class Brick extends RectangleComponent
     with CollisionCallbacks, HasGameReference<BrickBreaker> {
-  Brick({required this.number,required super.position, required Color color})
+  Brick({required this.number, required super.position, required Color color})
       : super(
           size: Vector2(brickWidth, brickHeight),
           anchor: Anchor.center,
@@ -49,11 +50,18 @@ class Brick extends RectangleComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
+
+    // play audio
+    FlameAudio.play(brickHitAudio);
+
+    // destroy brick
     removeFromParent();
-     game.score.value++; 
+
+    // update score
+    game.score.value++;
 
     if (game.world.children.query<Brick>().length == 1) {
-       game.playState = PlayState.won;  
+      game.playState = PlayState.won;
       game.world.removeAll(game.world.children.query<Ball>());
       game.world.removeAll(game.world.children.query<Bat>());
     }
