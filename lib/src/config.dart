@@ -25,3 +25,5 @@ final brickWidth =
     / brickColors.length;
 const brickHeight = gameHeight * 0.03;
 const difficultyModifier = 1.03;                                // To here.
+
+const brickHitAudio = 'brick_hit.wav';                           
