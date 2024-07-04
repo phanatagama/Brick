@@ -10,7 +10,7 @@
 <p align="center">
     Brick is an 2D Game built with Flutter and Flame game engine
     <br />
-    <!-- <a href="https://github.com/phanatagama/GitUP/releases/download/v.1.0.0-beta/GitUP-App-Beta.apk">Download App</a> -->
+    <a href="https://phanatagama.github.io/Brick">Play Game</a>
     ·
     <a href="https://github.com/phanatagama/Brick/issues/new">Report Bug</a>
     ·
